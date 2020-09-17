@@ -14,12 +14,21 @@ from typing import *
 
 
 def max_subarray(nums: List[int]) -> int:
+    """
+    The basic idea is to iterate over the list and build up a subarray. The subarray will either grow by the current
+    element (n) or restart at the current element if n is greater than the sum of n and the previous subarray.
+
+    While this is happening, the maximum visited subarray is stored as the maximum of the previous max subarray
+    and the current subarray.
+
+    Return the max subarray.
+    """
 
     max_sum = float('-inf')
     max_sum2 = float('-inf')
 
     for n in nums:
-        if max_sum2 + n < n and max_sum2 < n:
+        if max_sum2 + n < n:
             max_sum2 = n
         else:
             max_sum2 += n
